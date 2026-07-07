@@ -1,0 +1,6 @@
+- Prefer incremental, reversible changes. Risky changes ship behind a feature flag or staged rollout, not a single big-bang release.
+- New data pipelines or jobs must be idempotent and safe to replay (re-running on the same input must not double-count or double-apply effects).
+- No breaking changes to existing APIs or data contracts without a versioned, backward-compatible migration path.
+- New services or jobs must emit structured logs and at least one health/latency metric — "it works on my machine" is not observability.
+- Critical-path logic requires automated tests before merge; manual verification alone is not sufficient sign-off.
+- Default to the team's existing approved stack (Python services, Airflow for orchestration, Postgres/Hive for storage) unless there is a documented reason to introduce something new — new infrastructure has an ongoing maintenance cost, not just a build cost.

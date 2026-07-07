@@ -1,0 +1,5 @@
+- Any system touching financial transactions, payouts, or money movement must maintain an immutable audit trail (who/what/when/why) for at least the regulatory retention window.
+- Any design touching PII or financial data must be flagged for a security/compliance review before rollout — do not assume an internal-only tool is exempt.
+- Manual override, backfill, or "fix-forward" scripts must be logged and reversible. No silent direct writes to production data stores.
+- Anomaly or duplicate detection logic must fail closed (block/flag for human review) rather than fail open (silently allow) whenever it's uncertain.
+- Changes that affect money movement require a staged rollout (canary / percentage ramp) with an explicit rollback trigger, not an all-at-once cutover.
