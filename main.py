@@ -40,8 +40,18 @@ def stream(
         for event in room.run_stream(ask):
             yield f"data: {json.dumps(event)}\n\n"
 
-    # media_type="text/event-stream" tells the browser this is an SSE
-    return StreamingResponse(generate(), media_type="text/event-stream")
+    # X-Accel-Buffering: no  → tells Render/nginx to stop buffering and flush
+    # each chunk immediately. Without this, nginx holds the whole response
+    # until the connection closes and SSE never reaches the browser.
+    return StreamingResponse(
+        generate(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive",
+        },
+    )
 
 # Initiation 
 if __name__ == "__main__":

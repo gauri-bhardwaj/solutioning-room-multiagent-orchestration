@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Solutioning Room</title>
   <style>
     :root {
@@ -152,6 +153,18 @@
       max-height: 620px;
       overflow: hidden;
       transition: box-shadow .2s, border-color .2s;
+    }
+
+    /* Mobile: shrink lanes so all 4 don't require 1680px of scrolling */
+    @media (max-width:560px) {
+      .lane { min-height: 200px; max-height: 280px; }
+      .wrap { padding: 16px 12px 60px; }
+      h1 { font-size: 1.2rem; }
+      p.sub { font-size: 0.82rem; }
+      .row { gap: 10px; }
+      .row label { width: 100%; }
+      select, input[type=text] { width: 100%; }
+      button { width: 100%; }
     }
 
     .lane.active {
