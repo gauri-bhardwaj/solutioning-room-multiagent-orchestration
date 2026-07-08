@@ -91,25 +91,3 @@ index.html           Frontend — 4-lane live view, SSE consumer
 guardrails/          Policy docs appended to every agent's system prompt
 requirements.txt
 ```
-
----
-
-## Deploying for a live demo
-
-1. Push this repo to GitHub.
-2. Sign up at [render.com](https://render.com) → New Web Service → connect the repo.
-3. **Build command**: `pip install -r requirements.txt`
-4. **Start command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-5. Add `ANTHROPIC_API_KEY` as an environment variable in the Render dashboard.
-6. In `index.html`, set `anthropic` as the default selected provider so visitors get live AI responses.
-
-Each full discussion run costs under $0.05 with `claude-sonnet-4-6`.
-
----
-
-## What's next
-
-- `solutioning-room-langgraph/` — a second version using LangGraph for agent routing, conditional branching, and native checkpointing.
-- Real Anthropic streaming in `llm_client.py` (mock → live API).
-- Session persistence via Redis so discussions survive tab closes.
-- Unit tests in `tests/test_orchestrator_logic.py`.
