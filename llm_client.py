@@ -4,10 +4,11 @@ class LLMClient:
    def __init__(self, provider="mock", model="claude-sonnet-4-6"):
       self.provider = provider
       self.model = model
-      if self.provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
-         raise ValueError("Missing required environment variable: ANTHROPIC_API_KEY")
-      elif provider == "mock":
+      if provider == "mock":
          pass
+      elif provider == "anthropic":
+         if not os.environ.get("ANTHROPIC_API_KEY"):
+            raise ValueError("Missing required environment variable: ANTHROPIC_API_KEY")
       else:
          raise ValueError(f"Invalid provider: {provider}. Supported: 'mock', 'anthropic'.")
 
